@@ -4,7 +4,8 @@
   "description": "This assignment was assigned by the U.C. Berkeley Extension Full-time Full Stack Flex Boot Camp. This is assignment 12 for the program. In this assignment I was tasked to architect and build a solution for managing a company's employees using node, inquirer, and MySQL. The result is a command line application that manages the process.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",

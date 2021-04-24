@@ -46,7 +46,7 @@ There are no tests in this application.
 ### Usage
 You can run the program on the command line with the following command:
 ```
-npm start
+npm run start
 ```
 
 ## Video Demo
