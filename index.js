@@ -36,6 +36,7 @@ const ask = () => {
           viewEmployeesbyDepartment();
           break;
         case 'View All Employees By Manager':
+          viewEmployeesbyManager();
           break;
         case 'Add Employee':
           break;
@@ -110,6 +111,29 @@ const viewEmployeesbyDepartment = () => {
       .then(({department}) => {
         var id = departments.indexOf(department) + 1;
         server.viewEmployeesbyDepartment(id, askAgain);
+      })
+  });
+}
+
+const viewEmployeesbyManager = () => {
+  server.getManagers((data) => {
+    var managers = [];
+    var managerNames = [];
+    for (let manager of data) {
+      managers.push({id: manager.id, name: `${manager.first_name} ${manager.last_name}`});
+      managerNames.push(`${manager.first_name} ${manager.last_name}`);
+    }
+    inquirer
+      .prompt({
+        type: "list",
+        message: "Choose a manager to view his/her employees",
+        name: "manager",
+        choices: managerNames
+      })
+      .then(({manager}) => {
+        let index = managerNames.indexOf(manager);
+        var id = managers[index].id;
+        server.viewEmployeesbyManager(id, askAgain);
       })
   });
 }

@@ -52,8 +52,13 @@ const viewEmployeesbyManager = (id, cb) => {
     },
     (err, res) => {
       if(err) throw err;
-      console.table(res);
-      cb();
+      if (res.length === 0) {
+        console.log("This manager currently has no one working under him/her.\n");
+        cb();
+      } else {
+        console.table(res);
+        cb();
+      }
     });
 }
 
@@ -64,6 +69,16 @@ const getDepartments = (cb) => {
     if(err) throw err;
     cb(res);
   })
+}
+
+// get Managers that returns the reponse to a callback function
+const getManagers = (cb) => {
+  connection.query(
+    "SELECT * FROM employee WHERE role_id IN (SELECT id FROM role WHERE title LIKE '%manager%')",
+    (err, res) => {
+    if (err) throw err;
+    cb(res);
+  });
 }
 
 // Add functions that inserts an object into the database
@@ -193,6 +208,7 @@ module.exports = {
   viewEmployeesbyDepartment,
   viewEmployeesbyManager,
   getDepartments,
+  getManagers,
   addEmployee,
   addRole,
   addDepartment,
