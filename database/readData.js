@@ -7,9 +7,4 @@ const connection = mysql.createConnection({
   database: 'managementDB',
 });
 
-connection.connect((err) => {
-  if (err) throw err;
-  console.log(`Successfully connected to mySQL. Connected as id ${connection.threadId}`);
-});
-
 module.exports = connection;
