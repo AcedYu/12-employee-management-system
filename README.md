@@ -46,11 +46,11 @@ There are no tests in this application.
 ### Usage
 You can run the program on the command line with the following command:
 ```
-npm run start
+npm start
 ```
 
 ## Video Demo
-* [Video Demo Here](REPLACE THIS WITH YOUTUBE LINK LATER)
+* [Video Demo Here](https://youtu.be/4TaXQXvfCSk)
 
 ## Built With
 
