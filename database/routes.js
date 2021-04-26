@@ -63,12 +63,20 @@ const viewEmployeesbyManager = (id, cb) => {
 }
 
 // Get functions that return the response in the callback
+// get employees that returns the response to a callback function
+const getEmployees = (cb) => {
+  connection.query('SELECT * FROM employee', (err, res) => {
+    if (err) throw err;
+    cb(res);
+  });
+}
+
 // get Departments that returns the response to a callback function
 const getDepartments = (cb) => {
   connection.query('SELECT * FROM department', (err, res) => {
     if(err) throw err;
     cb(res);
-  })
+  });
 }
 
 // get Managers that returns the reponse to a callback function
@@ -76,6 +84,14 @@ const getManagers = (cb) => {
   connection.query(
     "SELECT * FROM employee WHERE role_id IN (SELECT id FROM role WHERE title LIKE '%manager%')",
     (err, res) => {
+    if (err) throw err;
+    cb(res);
+  });
+}
+
+// get roles that returns the response to a callback function
+const getRoles = (cb) => {
+  connection.query('SELECT * FROM role', (err, res) => {
     if (err) throw err;
     cb(res);
   });
@@ -207,8 +223,10 @@ module.exports = {
   viewDepartments,
   viewEmployeesbyDepartment,
   viewEmployeesbyManager,
+  getEmployees,
   getDepartments,
   getManagers,
+  getRoles,
   addEmployee,
   addRole,
   addDepartment,
