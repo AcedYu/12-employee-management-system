@@ -25,6 +25,30 @@ It contains notable features such as:
   - Update employee roles
 
 Due: Monday, April 26, 2021 11:59 PM
+```js
+const viewEmployeesbyDepartment = () => {
+  server.getDepartments((data) => {
+    var departments = [];
+    var departmentNames = [];
+    for (let department of data) {
+      departments.push({ id: department.id, name: department.name });
+      departmentNames.push(department.name);
+    }
+    inquirer
+      .prompt({
+        type: "list",
+        message: "Which department would you like to view?",
+        name: "department",
+        choices: departmentNames
+      })
+      .then(({ department }) => {
+        var index = departmentNames.indexOf(department);
+        var id = departments[index].id;
+        server.viewEmployeesbyDepartment(id, askAgain);
+      })
+  });
+}
+```
 
 ## Getting Started
 
